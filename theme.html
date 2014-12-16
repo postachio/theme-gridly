@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns#" xmlns:og="http://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      {% if is_login %}Login
+      {% elif is_home %}{{ site.author }}
+      {% elif is_tag %}{{ tag }}
+      {% elif post %}{{ post.title }}
+      {% endif %}
+      | {{ site.name }}
+    </title>
+
+    {{ header_meta }}
+
+    <link href="{{ assets('css/style.css') }}" rel="stylesheet" />
+
+    {% if site.analytics %}
+    <script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '{{ site.analytics }}']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+    {% endif %}
+  </head>
+  <body>
+
+    {% if is_login %}
+
+      {{ login_form }}
+
+    {% else %}
+    <div class="wrap">
+      <header class="header">
+        <div class="avatar">
+          <a href="/"><img src="{{ site.avatar }}" class="img-circle" alt="{{ site.author }}" /></a>
+        </div>
+        <div class="nav-logo">
+          <div class="logo">
+            <h1><a href="/" rel="home">{{ site.name }}</a></h1>
+          </div>
+          <nav id="nav">
+            <ul>
+              <li><a href="/">Home</a></li>
+              {% if pages %}
+              {% for page in pages %}
+              <li><a href="{{ page.permalink }}" class="{{ set_active(page.permalink) }}">{{ page.title }}</a></li>
+              {% endfor %}
+              {% endif %}
+            </ul>
+          </nav>
+        </div>
+        <div class="social-icons">
+          <ul>
+            {% if site.twitter %}
+            <li>
+              <a href="{{ site.twitter }}" title="Twitter" target="_blank">
+                <i class="icon-twitter"></i>
+                <span class="hide-text">Twitter</span>
+              </a>
+            </li>
+            {% endif %}
+            {% if site.facebook %}
+            <li>
+              <a href="{{ site.facebook }}" title="Facebook" target="_blank">
+                <i class="icon-facebook"></i>
+                <span class="hide-text">Facebook</span>
+              </a>
+            </li>
+            {% endif %}
+            {% if site.googleplus %}
+            <li>
+              <a href="{{ site.googleplus }}?rel=author" title="Google+" target="_blank">
+                <i class="icon-google-plus"></i>
+                <span class="hide-text">Google Plus</span>
+              </a>
+            </li>
+            {% endif %}
+            {% if site.linkedin %}
+            <li>
+              <a href="{{ site.linkedin }}" title="LinkedIn" target="_blank">
+                <i class="icon-linkedin"></i>
+                <span class="hide-text">LinkedIn</span>
+              </a>
+            </li>
+            {% endif %}
+            <li>
+              <a href="{{ site.atom_url }}" title="RSS" target="_blank">
+                <i class="icon-rss"></i>
+                <span class="hide-text">RSS</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </header>
+
+      {% if is_home or is_tag %}
+      <div class="post-area">
+
+        {% if is_tag %}
+        <h2 class="tag-head">Showing all posts tagged {{ tag }}:</h2>
+        {% endif %}
+
+        {% if posts %}
+        <section itemscope itemtype="http://schema.org/Blog" class="posts">
+        {% for post in posts %}
+          <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" class="blog-post">
+            {% if post.photos %}
+            {% for photo in post.photos %}
+            {% if loop.index == 1 %}
+            <div class="post-image">
+              <a href="{{ post.permalink }}">
+                {% if photo %}
+                <img src="{{ photo.width_600 }}" alt="Picture {{ loop.index }}" />
+                {% else %}
+                <img src="http://placehold.it/400x300/0eafff/ffffff.png" alt="" />
+                {% endif %}
+              </a>
+              {% if post.tags %}
+              <div class="post-tags">
+                <p>{{- post.tags|format_tags(humanize=True) -}}</p>
+              </div>
+              {% endif %}
+            </div>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+            <div class="post-content">
+              <h2><a href="{{ post.permalink }}">{{ post.title }}</a></h2>
+              <p class="post-date"><time datetime="{{ post.created_at }}">{{ post.created_at|date_format }}</time></p>
+              {% if post.tags and not post.photos %}
+              <p class="post-tags">{{- post.tags|format_tags(humanize=True) -}}</p>
+              {% endif %}
+              {% if post.content|striptags|wordcount > 0 %}
+              <p>{{ post.content|striptags|truncate(200) }}</p>
+              <p class="post-link"><a href="{{ post.permalink }}">View more &rarr;</a></p>
+              {% endif %}
+            </div>
+          </article>
+        {% endfor %}
+        </section>
+        {% if not is_tag %}
+        <div class="pagination">
+          {% if pagination.prev %}<a href="{{ pagination.prev }}" class="post-prev">&larr; View Previous Posts</a>{% endif %}
+          {% if pagination.next %}<a href="{{ pagination.next }}" class="post-next">View More Posts &rarr;</a>{% endif %}
+        </div>
+        {% endif %}
+        {% else %}
+        <h2 class="title"><em>No posts yet :(</em></h2>
+        {% endif %}
+
+      {% elif post.type == 'post' %}
+
+      <article itemscope itemtype="http://schema.org/BlogPosting" class="post">
+        <section class="content">
+
+          <div class="post-content" data-type-cleanup="true">
+            <header>
+              <h1>{{ post.title }}</h1>
+            </header>
+            <p class="post-date">Published by {{ site.author }}, <time datetime="{{ post.created_at }}">{{ post.created_at|date_format }}</time></p>
+            {{ post.content}}
+          </div>
+          <div class="post-footer">
+            {{ theme.social.bar }}
+            {% if post.tags %}
+              <p><strong>Tags:</strong> {{ post.tags|format_tags(humanize=True) }}</p>
+            {% endif %}
+          </div>
+        </section>
+        {% if site.disqus %}
+        <hr class="large" />
+        <section class="comments">
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+          var disqus_shortname = '{{ site.disqus }}';
+          var disqus_url = '{{site.base_url}}{{ post.permalink }}';
+          (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+          </script>
+          <noscript>
+            Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+          </noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </section>
+        {% endif %}
+      </article>
+      <!--
+      <div class="post-nav">
+        <div class="post-prev"></div>
+        <div class="post-next"></div>
+      </div>
+      -->
+
+      {% elif post.type == 'link' %}
+
+      <article itemscope itemtype="http://schema.org/BlogPosting" class="post">
+        <section class="content">
+          <div class="post-content" data-type-cleanup="true">
+            <header>
+              <h1>{{ link.title }}</h1>
+            </header>
+            <p class="post-date">Published by {{ site.author }}, <time datetime="{{ link.created_at }}">{{ link.created_at|date_format }}</time></p>
+            {{ link.content }}
+            <p class="link-url"><i class="icon-share"></i> <a href="{{ link.url }}">{{ link.url }}</a></p>
+          </div>
+          <div class="post-footer">
+            {{ theme.social.bar }}
+            {% if post.tags %}
+              <p><strong>Tags:</strong> {{ post.tags|format_tags(humanize=True) }}</p>
+            {% endif %}
+          </div>
+        </section>
+        {% if site.disqus %}
+        <hr class="large" />
+        <section class="comments">
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+          var disqus_shortname = '{{ site.disqus }}';
+          var disqus_url = '{{site.base_url}}{{ post.permalink }}';
+          (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+          </script>
+          <noscript>
+            Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+          </noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </section>
+        {% endif %}
+      </article>
+      <!--
+      <div class="post-nav">
+        <div class="post-prev"></div>
+        <div class="post-next"></div>
+      </div>
+      -->
+
+      {% elif post.type == 'page' %}
+
+      <div class="page">
+        <div class="post-content" data-type-cleanup="true">
+          <h1>{{ page.title }}</h1>
+          {{ page.content }}
+        </div>
+      </div>
+
+      {% endif %}
+
+      <footer class="footer">
+        <div class="copyright">
+          <p class="pull-left">All rights Reserved &copy; <a href="/">{{ site.name }}</a>.</p>
+          <p class="pull-right">Powered by <a href="http://postach.io" target="_blank">Postach.io</a> | Design based on <a href="http://www.eleventhemes.com/gridly-theme/">Gridly</a></p>
+        </div>
+      </footer>
+    </div>
+
+    {% endif %}
+
+    {{ footer_meta }}
+    
+    <!-- javasript -->
+    <script src="{{ assets('js/gridly.min.js') }}" /></script>
+
+</body>
+</html>
