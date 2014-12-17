@@ -1,4 +1,4 @@
-@import url('http://fonts.googleapis.com/css?family=Droid+Sans:400,700|Vollkorn:400italic');
+@import url('https://www.google.com/fonts#QuickUsePlace:quickUse/Family:Ubuntu');
 /**
  * Page styles
  */
@@ -203,8 +203,8 @@
  * -------------------------- */
 @font-face {
   font-family: 'FontAwesome';
-  src: url('http://postach.io/static/themes/_assets/fontawesome/font/fontawesome-webfont.eot?v=3.1.0');
-  src: url('http://postach.io/static/themes/_assets/fontawesome/font/fontawesome-webfont.eot?#iefix&v=3.1.0') format('embedded-opentype'), url('http://postach.io/static/themes/_assets/fontawesome/font/fontawesome-webfont.woff?v=3.1.0') format('woff'), url('http://postach.io/static/themes/_assets/fontawesome/font/fontawesome-webfont.ttf?v=3.1.0') format('truetype'), url('http://postach.io/static/themes/_assets/fontawesome/font/fontawesome-webfont.svg#fontawesomeregular?v=3.1.0') format('svg');
+  src: url('https://www.google.com/fonts#QuickUsePlace:quickUse/Family:Ubuntu');
+  src: url('https://www.google.com/fonts#QuickUsePlace:quickUse/Family:Ubuntu') format('embedded-opentype'), url('https://www.google.com/fonts#QuickUsePlace:quickUse/Family:Ubuntu') format('woff'), url('https://www.google.com/fonts#QuickUsePlace:quickUse/Family:Ubuntu') format('truetype'), url('https://www.google.com/fonts#QuickUsePlace:quickUse/Family:Ubuntu') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -1833,7 +1833,7 @@ hr.large {
   margin-top: 0.375rem;
 }
 .header .avatar {
-  margin-top: 12px;
+  margin-top: 10px;
   margin-top: 0.75rem;
   margin-right: 30px;
   margin-right: 1.875rem;
@@ -1871,8 +1871,8 @@ hr.large {
 }
 #nav ul li {
   float: left;
-  font-size: 12px;
-  font-size: 0.75rem;
+  font-size: 10px;
+  font-size: 0.70rem;
 }
 #nav ul li a {
   display: block;
@@ -1935,7 +1935,7 @@ hr.large {
   padding-top: 15px;
   padding-top: 0.9375rem;
   color: #4f5356;
-  font-size: 12px;
+  font-size: 10px;
   font-size: 0.75rem;
 }
 .copyright a {
@@ -2021,8 +2021,8 @@ hr.large {
 .post-area .blog-post .post-tags,
 .post-area .blog-post .post-link {
   color: #8e8e8e;
-  font-size: 10px;
-  font-size: 0.625rem;
+  font-size: 12px;
+  font-size: 0.650rem;
   padding-bottom: 0;
   padding-top: 0;
 }
