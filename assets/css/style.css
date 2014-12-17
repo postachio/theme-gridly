@@ -202,7 +202,7 @@
 /* FONT PATH
  * -------------------------- */
 @font-face {
-  font-family: 'FontAwesome';
+  font-family: Ubuntu;
   src: url('https://www.google.com/fonts#QuickUsePlace:quickUse/Family:Ubuntu');
   src: url('https://www.google.com/fonts#QuickUsePlace:quickUse/Family:Ubuntu') format('embedded-opentype'), url('https://www.google.com/fonts#QuickUsePlace:quickUse/Family:Ubuntu') format('woff'), url('https://www.google.com/fonts#QuickUsePlace:quickUse/Family:Ubuntu') format('truetype'), url('https://www.google.com/fonts#QuickUsePlace:quickUse/Family:Ubuntu') format('svg');
   font-weight: normal;
@@ -212,7 +212,7 @@
  * -------------------------- */
 [class^="icon-"],
 [class*=" icon-"] {
-  font-family: FontAwesome;
+  font-family: Ubuntu;
   font-weight: normal;
   font-style: normal;
   text-decoration: inherit;
@@ -1561,7 +1561,7 @@ body {
   padding-bottom: 1.25rem;
   font-weight: normal;
   font-size: 100%;
-  font-family: 'Droid Sans', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Ubuntu', Helvetica
   line-height: 1.625;
   color: #252525;
   background: url('../img/light/bg.jpg');
@@ -1693,7 +1693,7 @@ blockquote {
   font-size: 16px;
   font-size: 1rem;
   font-weight: 400;
-  font-family: "Vollkorn";
+  font-family: "Ubuntu";
   line-height: 1.625;
 }
 blockquote cite {
@@ -1871,7 +1871,7 @@ hr.large {
 }
 #nav ul li {
   float: left;
-  font-size: 10px;
+  font-size: 12px;
   font-size: 0.70rem;
 }
 #nav ul li a {
@@ -1935,7 +1935,7 @@ hr.large {
   padding-top: 15px;
   padding-top: 0.9375rem;
   color: #4f5356;
-  font-size: 10px;
+  font-size: 12px;
   font-size: 0.75rem;
 }
 .copyright a {
@@ -2021,7 +2021,7 @@ hr.large {
 .post-area .blog-post .post-tags,
 .post-area .blog-post .post-link {
   color: #8e8e8e;
-  font-size: 12px;
+  font-size: 14px;
   font-size: 0.650rem;
   padding-bottom: 0;
   padding-top: 0;
