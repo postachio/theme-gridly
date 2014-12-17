@@ -270,14 +270,14 @@
     {{ footer_meta }}
     
     <!-- javasript -->
-    <script src="{{ assets('js/gridly.min.js') }}" /></script>
-    {% if site.tags %}
-      <div class="tags">
-        {% for tag in site.tags %}
-          <a href="/tag/{{ tag.name }}">#{{ tag.name }}</a>
-        {% endfor %}
-      </div>
-    {% endif %}
+    <script src="{{ assets('js/gridly.min.js') }}" /></script> 
+  {% if site.tags %}
+    <div class="tags">
+      {% for tag in site.tags %}
+        <a href="/tag/{{ tag.name }}">#{{ tag.name }}</a>
+      {% endfor %}
+    </div>
+  {% endif %}
 
 </body>
 </html>
