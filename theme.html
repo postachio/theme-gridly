@@ -55,15 +55,6 @@
             </ul>
           </nav>
         </div>
-        
-            {% if site.tags %}
-              <div class="tags">
-                {% for tag in site.tags %}
-                  <a href="/tag/{{ tag.name }}">#{{ tag.name }}</a>
-                {% endfor %}
-              </div>
-            {% endif %}
-        
         <div class="social-icons">
           <ul>
             {% if site.twitter %}
@@ -114,7 +105,14 @@
         {% if is_tag %}
         <h2 class="tag-head">Showing all posts tagged {{ tag }}:</h2>
         {% endif %}
-
+      {% if site.tags %}
+        <div class="tags">
+          {% for tag in site.tags %}
+            <a href="/tag/{{ tag.name }}">#{{ tag.name }}</a>
+          {% endfor %}
+        </div>
+      {% endif %}
+      
         {% if posts %}
         <section itemscope itemtype="http://schema.org/Blog" class="posts">
         {% for post in posts %}
