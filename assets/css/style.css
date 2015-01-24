@@ -1957,7 +1957,8 @@ hr.large {
 .page,
 .post {
   width: 740px;
-  width: 100%;
+  width: 60%;
+  margin: 0 auto;
   margin-top: 15px;
   margin-top: 0.9375rem;
   margin-bottom: 30px;
