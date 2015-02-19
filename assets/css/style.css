@@ -1,14 +1,5 @@
 @import url('http://fonts.googleapis.com/css?family=Droid+Sans:400,700|Vollkorn:400italic');
-/**
- * Page styles
- */
-/*---------------------------------------------------
-    LESS Elements 0.9.1
-  ---------------------------------------------------
-    A set of useful LESS mixins
-    More info at: http://lesselements.com
-    MODIFIED BY: Brandon Brown
-  ---------------------------------------------------*/
+
 * html .clearfix {
   zoom: 1;
 }
@@ -1966,7 +1957,8 @@ hr.large {
 .page,
 .post {
   width: 740px;
-  width: 46.25rem;
+  width: 60%;
+  margin: 0 auto;
   margin-top: 15px;
   margin-top: 0.9375rem;
   margin-bottom: 30px;
