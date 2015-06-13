@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html prefix="og: http://ogp.me/ns#" xmlns:og="http://ogp.me/ns#">
   <head>
+  <meta name="p:domain_verify" content="665aed7e99a00b87b47efda0a3f97ead"/>
     <meta charset="utf-8">
     <title>
-      {% if is_login %}Login
+      {% if is_login %}Login 
       {% elif is_home %}{{ site.author }}
       {% elif is_tag %}{{ tag }}
       {% elif post %}{{ post.title }}
@@ -47,7 +48,7 @@
           <nav id="nav">
             <ul>
               <li><a href="/">Home</a></li>
-              {% if pages %}
+            {% if pages %}
               {% for page in pages %}
               <li><a href="{{ page.permalink }}" class="{{ set_active(page.permalink) }}">{{ page.title }}</a></li>
               {% endfor %}
@@ -56,8 +57,7 @@
           </nav>
         </div>
         <div class="social-icons">
-          <ul>
-            {% if site.twitter %}
+          {% if site.twitter %}
             <li>
               <a href="{{ site.twitter }}" title="Twitter" target="_blank">
                 <i class="icon-twitter"></i>
@@ -73,14 +73,6 @@
               </a>
             </li>
             {% endif %}
-            {% if site.googleplus %}
-            <li>
-              <a href="{{ site.googleplus }}?rel=author" title="Google+" target="_blank">
-                <i class="icon-google-plus"></i>
-                <span class="hide-text">Google Plus</span>
-              </a>
-            </li>
-            {% endif %}
             {% if site.linkedin %}
             <li>
               <a href="{{ site.linkedin }}" title="LinkedIn" target="_blank">
@@ -89,7 +81,13 @@
               </a>
             </li>
             {% endif %}
-            <li>
+            {% if site.googleplus %}
+            </li>
+              <a href="https://plus.google.com/{+PageId}" rel="publisher"></a>
+                <i class="icon-googleplus"></i>
+              </a>
+            </li>
+            {% endif %}
               <a href="{{ site.atom_url }}" title="RSS" target="_blank">
                 <i class="icon-rss"></i>
                 <span class="hide-text">RSS</span>
@@ -105,7 +103,14 @@
         {% if is_tag %}
         <h2 class="tag-head">Showing all posts tagged {{ tag }}:</h2>
         {% endif %}
-
+      {% if site.tags %}
+        <div class="tags">
+          {% for tag in site.tags %}
+            <a href="/tag/{{ tag.name }}">#{{ tag.name }}</a>
+          {% endfor %}
+        </div>
+      {% endif %}
+      
         {% if posts %}
         <section itemscope itemtype="http://schema.org/Blog" class="posts">
         {% for post in posts %}
@@ -261,16 +266,16 @@
         <div class="copyright">
           <p class="pull-left">All rights Reserved &copy; <a href="/">{{ site.name }}</a>.</p>
           <p class="pull-right">Powered by <a href="http://postach.io" target="_blank">Postach.io</a> | Design based on <a href="http://www.eleventhemes.com/gridly-theme/">Gridly</a></p>
-        </div>
-      </footer>
-    </div>
+        <a data-pin-do="embedPin" href="http://www.pinterest.com/diatrofiallios//"></a>
+        <!-- Please call pinit.js only once per page -->
+        <script type="text/javascript" async defer src="//assets.pinterest.com/js/pinit.js"></script>
+      </div>
+    </footer>
+  </div>
 
     {% endif %}
 
     {{ footer_meta }}
-    
-    <!-- javasript -->
-    <script src="{{ assets('js/gridly.min.js') }}" /></script>
-
 </body>
 </html>
+
